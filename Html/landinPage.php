@@ -4,8 +4,10 @@
     <title>Landing Page</title>
     <link rel="stylesheet" type="text/css" href="../CSS/landing.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -210,7 +212,7 @@
       <div class="div-72">
         <div class="div-73">
           <div class="column-12">
-            <form class="div-74">
+            <form method="post" action="../PHP/email.php" class="div-74">
               <label class="div-75" for="full-name">Full Name:</label>
               <input id="full-name" class="div-76" type="text" name="full-name" placeholder="Enter your full name">
       
@@ -220,7 +222,7 @@
               <label class="div-79" for="message">Message:</label>
               <textarea id="message" class="div-80" name="message" placeholder="Enter your message"></textarea>
       
-              <button class="div-81" type="submit">Send</button>
+              <button class="div-81" name="submit" type="submit">Send</button>
             </form>
           </div>
           <div class="column-13">
@@ -237,5 +239,26 @@
     </div>
     <div class="div-82">footer</div>
     </div>
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script>
+    if (<?php echo $_GET['s'];?> == 1) {
+
+         Swal.fire({
+                title: "Success!",
+                text: "Your message has been sent successfully.",
+                icon: "success",
+                confirmButtonText: "OK"
+            })
+    }
+    else {
+      Swal.fire({
+      title: 'Error!',
+      text: 'An Error Has Occured',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    })
+    }
+
+ </script>
 </body>
 </html>   
