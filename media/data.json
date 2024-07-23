@@ -1,0 +1,75 @@
+{
+    "categories": [
+      {
+        "name": "Portfolio",
+        "items": [
+          {
+            "image": "./Personal.png",
+            "title": "Personal Portfolio with four pages",
+            "description": "A personal portfolio that includes four pages."
+          },
+          {
+            "image": "./Modern.jpg",
+            "title": "Modern Portfolio Design",
+            "description": "A modern design for showcasing your projects."
+          },
+          {
+            "image": "./creative.png",
+            "title": "Creative Portfolio",
+            "description": "A creative portfolio for designers."
+          },
+          {
+            "image": "./business.jpg",
+            "title": "Business Portfolio",
+            "description": "A portfolio for business professionals."
+          },
+          {
+            "image": "./freelancer.jfif",
+            "title": "Freelancer Portfolio",
+            "description": "A portfolio tailored for freelancers."
+          },
+          {
+            "image": "./developper.webp",
+            "title": "Developer Portfolio",
+            "description": "A portfolio for showcasing developer projects."
+          }
+        ]
+      },
+      {
+        "name": "Landing Page",
+        "items": [
+          {
+            "image": "./Product.jpg",
+            "title": "Product Landing Page",
+            "description": "A landing page for promoting your product."
+          },
+          {
+            "image": "./App.jpg",
+            "title": "App Landing Page",
+            "description": "A landing page for your mobile app."
+          },
+          {
+            "image": "./service.jpg",
+            "title": "Service Landing Page",
+            "description": "A landing page for promoting your services."
+          },
+          {
+            "image": "./startup.jpg",
+            "title": "Startup Landing Page",
+            "description": "A landing page for startups."
+          },
+          {
+            "image": "./agency.png",
+            "title": "Agency Landing Page",
+            "description": "A landing page for agencies."
+          },
+          {
+            "image": "./event.png",
+            "title": "Event Landing Page",
+            "description": "A landing page for events."
+          }
+        ]
+      }
+    ]
+  }
+  

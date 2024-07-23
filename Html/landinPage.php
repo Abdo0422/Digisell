@@ -101,110 +101,101 @@
         Here's what we provide.
         <br />
       </div>
-      <div class="div-24">
-        <div class="div-25">
-          <div class="column-5">
-            <div class="div-26">
+      <?php
+// Load the JSON file
+$jsonFilePath = __DIR__ . '/../media/data.json';
+if (!file_exists($jsonFilePath)) {
+    die("JSON file not found");
+}
+
+$jsonData = file_get_contents($jsonFilePath);
+$data = json_decode($jsonData, true);
+
+if (!$data) {
+  die("Error decoding JSON data");
+}
+?>
+
+<div class="div-24">
+  <div class="div-25">
+      <div class="column-5">
+          <div class="div-26">
               <div class="div-27">
-                <button class="div-28">All</button>
-                <button class="div-29">Portfolio</button>
+                  <button class="div-28" data-category="all">All</button>
+                  <?php foreach ($data['categories'] as $category): ?>
+                      <button class="div-29" data-category="<?= htmlspecialchars($category['name']) ?>"><?= htmlspecialchars($category['name']) ?></button>
+                  <?php endforeach; ?>
+                  <button class="div-28">Other</button>
+                  <button class="div-28">Other</button>
               </div>
               <div class="div-30">
-                <div class="div-31">Sort By</div>
+                <div>
+                  <div class="div-31">Sort By</div>
                   <select class="div-33">
-                    <option value="newest">Newest</option>
-                    <!-- Add more options here if needed -->
+                      <option value="newest">Newest</option>
                   </select>
-
-              </div>
-              <div class="div-34">
-                <a href="#" class="div-35">See More</a>
-            </div>
-              <div class="div-36">
-                Personal Portfolio with
-                <br />
-                four pages
-              </div>
-            </div>
-          </div>
-          <div class="column-6">
-            <div class="div-37">
-              <div class="div-38">
-                <button class="div-39">Landing Page</button>
-                <button class="div-40">Other</button>
-                <button class="div-41">Other</button>
-              </div>
-              <div class="div-42">
-                <div class="div-43">Lowered</div>
-                  <select class="div-45">
-                    <option value="10">$10</option>
-                    <!-- Add more options here if needed -->
-                  </select>
-              </div>
-              <div class="div-46">
-                <div class="div-47">
-                  <div class="column-7">
-                    <div class="div-48">
-                      <div class="div-49"><a href="#" class="div-50">See More</a></div>
-                      <div class="div-51">
-                        Personal Portfolio with
-                        <br />
-                        four pages
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column-8">
-                    <div class="div-52">
-                      <div class="div-53"><a href="#" class="div-54">See More</a></div>
-                      <div class="div-55">
-                        Personal Portfolio with
-                        <br />
-                        four pages
-                      </div>
-                    </div>
-                  </div>
                 </div>
+                <div>
+                  <div class="div-43">Lowered</div>
+                  <select class="div-45">
+                      <option value="10">$10</option>
+                  </select>
+                </div>  
+                  
               </div>
-            </div>
+
+       <div class="column-6">
+          <div class="div-37">
+             
+              
+              <div class="div-46">
+                  <div class="div-47" id="items-container">
+                      <?php foreach ($data['categories'] as $category): ?>
+                          <?php foreach ($category['items'] as $item): ?>
+                              <div class="column-7" data-category="<?= htmlspecialchars($category['name']) ?>">
+                                  <div class="div-48">
+                                      <div class="div-49"  style="background-image: url('../media/<?= htmlspecialchars($item['image']) ?>'); background-size: contain; background-position: center; background-repeat: no-repeat;transition: filter 0.3s;overflow: hidden;">
+                                        <a href="#" class="div-50">See More</a>
+                                      </div>
+                                      <div class="div-51">
+                                          <?= htmlspecialchars($item['title']) ?>
+                                      </div>
+                                  </div>
+                              </div>
+                          <?php endforeach; ?>
+                      <?php endforeach; ?>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-      
-      <div class="div-56">
-        <div class="div-57">
-          <div class="column-9">
-            <div class="div-58">
-              <div class="div-59"><a href="#" class="div-60">See More</a></div>
-              <div class="div-61">
-                Personal Portfolio with
-                <br />
-                four pages
-              </div>
-            </div>
-          </div>
-          <div class="column-10">
-            <div class="div-62">
-              <div class="div-63"><a href="#" class="div-64">See More</a></div>
-              <div class="div-65">
-                Personal Portfolio with
-                <br />
-                four pages
-              </div>
-            </div>
-          </div>
-          <div class="column-11">
-            <div class="div-66">
-              <div class="div-67"><a href="#" class="div-68">See More</a></div>
-              <div class="div-69">
-                Personal Portfolio with
-                <br />
-                four pages
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="div-70">Show More</div>
+      </div>
+  </div>
+</div>
+
+<div class="div-70">Show More</div>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+        const categoryButtons = document.querySelectorAll('[data-category]');
+        const itemsContainer = document.getElementById('items-container');
+        const allItems = itemsContainer.querySelectorAll('.column-7');
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const selectedCategory = this.getAttribute('data-category');
+
+                allItems.forEach(item => {
+                    if (selectedCategory === 'all' || item.getAttribute('data-category') === selectedCategory) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
       <div class="div-71">
         Ready To Assist.
         <br />
